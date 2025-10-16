@@ -45,7 +45,7 @@ function parseInput(input) {
       throw new Error("[ERROR] 커스텀 구분자가 지정되지 않았습니다.");
     }
 
-    const numbersPart = input.slice(6); // "//;\\n" 이후 부분(구분자를 1개로 가정)
+    const numbersPart = input.slice(5); // "//;\\n" 다음 부분(구분자를 1개로 가정)
 
     // 먼저 커스텀 구분자로 파싱
     const firstSplits = numbersPart.split(customDelimiter);
