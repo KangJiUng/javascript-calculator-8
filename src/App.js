@@ -5,6 +5,13 @@ function validateInput(input) {
   if (input === "") {
     return { stop: true, result: 0 };
   }
+
+  // 숫자만 입력 -> 숫자로 변환한 값 그대로 출력 후 종료
+  if (/^\d+$/.test(input)) {
+    return { stop: true, result: Number(input) };
+  }
+
+  return { stop: false };
 }
 
 function parseInput(input) {
