@@ -32,6 +32,14 @@ function parseInput(input) {
   // 시작이 "//"이면 커스텀 구분자 지정
   if (input.startsWith("//")) {
     const customDelimiter = input[2];
+
+    // 커스텀 구분자로 공백 또는 숫자를 사용할 경우 에러
+    if (customDelimiter === " " || /\d/.test(customDelimiter)) {
+      throw new Error(
+        "[ERROR] 커스텀 구분자로 공백 또는 숫자는 사용할 수 없습니다."
+      );
+    }
+
     const numbersPart = input.slice(6); // "//;\\n" 이후 부분(구분자를 1개로 가정)
 
     // 먼저 커스텀 구분자로 파싱
