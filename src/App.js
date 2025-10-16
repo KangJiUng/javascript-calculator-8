@@ -59,10 +59,14 @@ function parseInput(input) {
     numbers = input.split(/[, :]/).map((num) => (num === "" ? 0 : Number(num)));
   }
 
-  // 음수 입력 시 에러 처리
   for (const n of numbers) {
+    // 음수 입력 시 에러 처리
     if (n < 0) {
       throw new Error("[ERROR] 음수는 입력할 수 없습니다.");
+    }
+    // 지정되지 않은 구분자가 포함된 경우 에러 처리
+    if (Number.isNaN(n)) {
+      throw new Error("[ERROR] 지정되지 않은 구분자가 포함되어 있습니다.");
     }
   }
 
