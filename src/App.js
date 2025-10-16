@@ -40,6 +40,11 @@ function parseInput(input) {
       );
     }
 
+    // "//\\n"처럼 구분자가 지정되지 않았거나 리터럴 역슬래시가 아닌 경우
+    if (input.slice(2, 4) === "\\n" || input.slice(2, 3) === "\n") {
+      throw new Error("[ERROR] 커스텀 구분자가 지정되지 않았습니다.");
+    }
+
     const numbersPart = input.slice(6); // "//;\\n" 이후 부분(구분자를 1개로 가정)
 
     // 먼저 커스텀 구분자로 파싱
