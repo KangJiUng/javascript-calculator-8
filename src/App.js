@@ -46,10 +46,12 @@ function parseInput(input) {
     const firstSplits = numbersPart.split(customDelimiter);
 
     // 혼합 구분자 처리를 위해 다시 쉼표(,)와 콜론(:)으로 파싱 및 숫자로 변환
-    numbers = firstSplits.flatMap((part) => part.split(/[, :]/)).map(Number);
+    numbers = firstSplits
+      .flatMap((part) => part.split(/[, :]/))
+      .map((num) => (num === "" ? 0 : Number(num))); // 빈 문자열은 0으로 변환
   } else {
     // 기본 구분자 쉼표(,)와 콜론(:)으로 파싱 및 숫자로 변환
-    numbers = input.split(/[, :]/).map(Number);
+    numbers = input.split(/[, :]/).map((num) => (num === "" ? 0 : Number(num)));
   }
 
   // 음수 입력 시 에러 처리
