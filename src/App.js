@@ -20,6 +20,13 @@ function parseInput(input) {
   return numbers;
 }
 
+// 숫자 덧셈 계산
+function calculateSum(numbers) {
+  const result = numbers.reduce((acc, cur) => acc + cur, 0);
+
+  return result;
+}
+
 class App {
   async run() {
     const input = await Console.readLineAsync(
@@ -27,6 +34,9 @@ class App {
     );
 
     const numbers = parseInput(input);
+    const sum = calculateSum(numbers);
+
+    Console.print(`결과 : ${sum}`);
   }
 }
 
