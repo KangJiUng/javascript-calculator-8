@@ -1,5 +1,12 @@
 import { Console } from "@woowacourse/mission-utils";
 
+function validateInput(input) {
+  // 빈 문자열 → 0 출력 후 종료
+  if (input === "") {
+    return { stop: true, result: 0 };
+  }
+}
+
 function parseInput(input) {
   let numbers;
 
@@ -32,6 +39,13 @@ class App {
     const input = await Console.readLineAsync(
       "덧셈할 문자열을 입력해 주세요.\n"
     );
+
+    const validation = validateInput(input);
+
+    if (validation.stop) {
+      Console.print(`결과 : ${validation.result}`);
+      return;
+    }
 
     const numbers = parseInput(input);
     const sum = calculateSum(numbers);
