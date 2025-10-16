@@ -8,8 +8,11 @@ function parseInput(input) {
     const customDelimiter = input[2];
     const numbersPart = input.slice(6); // "//;\\n" 이후 부분(구분자를 1개로 가정)
 
-    // 커스텀 구분자로 파싱 및 숫자로 변환
-    numbers = numbersPart.split(customDelimiter).map(Number);
+    // 먼저 커스텀 구분자로 파싱
+    const firstSplits = numbersPart.split(customDelimiter);
+
+    // 혼합 구분자 처리를 위해 다시 쉼표(,)와 콜론(:)으로 파싱 및 숫자로 변환
+    numbers = firstSplits.flatMap((part) => part.split(/[, :]/)).map(Number);
   } else {
     // 기본 구분자 쉼표(,)와 콜론(:)으로 파싱 및 숫자로 변환
     numbers = input.split(/[, :]/).map(Number);
