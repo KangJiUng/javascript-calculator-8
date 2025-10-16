@@ -1,9 +1,19 @@
 import { Console } from "@woowacourse/mission-utils";
 
 function parseInput(input) {
-  // 기본 구분자 쉼표(,)와 콜론(:)으로 파싱 및 숫자로 변환
-  const numbers = input.split(/[, :]/).map(Number);
+  let numbers;
 
+  // 시작이 "//"이면 커스텀 구분자 지정
+  if (input.startsWith("//")) {
+    const customDelimiter = input[2];
+    const numbersPart = input.slice(6); // "//;\\n" 이후 부분(구분자를 1개로 가정)
+
+    // 커스텀 구분자로 파싱 및 숫자로 변환
+    numbers = numbersPart.split(customDelimiter).map(Number);
+  } else {
+    // 기본 구분자 쉼표(,)와 콜론(:)으로 파싱 및 숫자로 변환
+    numbers = input.split(/[, :]/).map(Number);
+  }
   return numbers;
 }
 
