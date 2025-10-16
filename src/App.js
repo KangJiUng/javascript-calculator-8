@@ -11,6 +11,13 @@ function validateInput(input) {
     return { stop: true, result: Number(input) };
   }
 
+  // "//"가 포함되어 있지만, 문자열 처음이 아닐 경우 에러
+  if (input.includes("//") && !input.startsWith("//")) {
+    throw new Error(
+      "[ERROR] 커스텀 구분자는 입력의 시작 부분에만 올 수 있습니다."
+    );
+  }
+
   return { stop: false };
 }
 
