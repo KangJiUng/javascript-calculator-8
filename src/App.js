@@ -18,6 +18,11 @@ function validateInput(input) {
     );
   }
 
+  // "//"가 두 번 이상 등장할 경우(커스텀 구분자 지정 두 번 이상) 에러
+  if ((input.match(/\/\//g) || []).length > 1) {
+    throw new Error("[ERROR] 커스텀 구분자는 한 번만 지정할 수 있습니다.");
+  }
+
   return { stop: false };
 }
 
