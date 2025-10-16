@@ -31,6 +31,14 @@ function parseInput(input) {
     // 기본 구분자 쉼표(,)와 콜론(:)으로 파싱 및 숫자로 변환
     numbers = input.split(/[, :]/).map(Number);
   }
+
+  // 음수 입력 시 에러 처리
+  for (const n of numbers) {
+    if (n < 0) {
+      throw new Error("[ERROR] 음수는 입력할 수 없습니다.");
+    }
+  }
+
   return numbers;
 }
 
